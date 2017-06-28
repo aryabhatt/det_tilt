@@ -3,12 +3,14 @@
 import numpy as np
 from skimage import io
 from skimage import feature
+from skimage.feature import blob_log
 from scipy.spatial import cKDTree
 import ellipse
+import fabio
 
 import sys
 import matplotlib.pyplot as plt
-import ipdb
+
 
 def clusterPts(pts, radius=25, num_clusters=5):
     kdtree = cKDTree(pts, leafsize=20) 
@@ -52,9 +54,14 @@ def clusterPts(pts, radius=25, num_clusters=5):
     return clusters
         
 if __name__ == '__main__':
-    data = io.imread('LaB6_MARCCD.tif')
-    edges = feature.canny(data, sigma=0.25)
-    y,x = np.where(edges)
+    data = fabio.open('LaB6_MARCCD.tif').data
+    # edges = feature.canny(data, sigma=0.25)
+    # y,x = np.where(edges)
+
+    blobs_log = blob_log(data, max_sigma=3, num_sigma=3, threshold=.1)
+    y,x,sigma = blobs_log.T
+    plt.show()
+
     pts = np.vstack((x, y)).transpose()
 
     # cluster points
@@ -69,13 +76,14 @@ if __name__ == '__main__':
         shift = ell.min(axis=0)
         scale = ell.max()
         pp = (ell - shift)/scale
-        p,_ = ellipse.fit_ellipse(pp[:,0], pp[:,1])
-        xx, yy = ellipse.plot_ellipse(p)
-        xx = xx * scale + shift[0]
-        yy = yy * scale + shift[1]
-        plt.imshow(data)    
-        plt.scatter(ell[:,0], ell[:,1])
-        #plt.plot(xx, yy)
-        plt.show()
+        if len(pp)>3:
+            p,_ = ellipse.fit_ellipse(pp[:,0], pp[:,1])
+            xx, yy = ellipse.plot_ellipse(p)
+            xx = xx * scale + shift[0]
+            yy = yy * scale + shift[1]
+            plt.imshow(data)
+            plt.scatter(ell[:,0], ell[:,1])
+            plt.plot(xx, yy)
+            plt.show()
     print ('num of clusters = %d' % len(labels))
     print ('time taken = %f' % t1)
