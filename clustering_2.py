@@ -12,7 +12,7 @@ import ellipse
 import os.path
 
 
-def clustering(img_path):
+def clustering(img_path, eps, min_samples):
     img, im_simple, im_adaptive, im_combine = import_image(img_path)
     data = img
     data[im_combine == 0] = 0
@@ -30,21 +30,24 @@ def clustering(img_path):
     Y_coordinates = Y_coordinates[keep]
     input = np.concatenate(([X_coordinates], [Y_coordinates]), axis=0)
     input = input.T
-    save_path = 'plots//db_test'
+
     # for eps in range(6, 12):
     #     for min_samples in range(5, 11):
-    eps = 8
-    min_samples = 5
+
     db = DBSCAN(eps=eps, min_samples=min_samples, metric='euclidean', algorithm='brute')
     db.fit(input)
     labels = db.labels_
     return labels, X_coordinates, Y_coordinates, dim_x, dim_y
 
 if __name__ == '__main__':
-    labels, X_coordinates, Y_coordinates, dim_x, dim_y = clustering('LaB6\\1.tif')
+    eps = 8
+    min_samples = 5
+    labels, X_coordinates, Y_coordinates, dim_x, dim_y = clustering(img_path = 'LaB6_MARCCD.tif', eps = eps, min_samples = min_samples)
     # print labels
     # mask = labels != -1
+    # save_path = 'plots//db_test'
     # plt.scatter(X_coordinates[mask], Y_coordinates[mask], c=labels[mask], cmap='Paired', s=5)
+    # plt.show()
     # plt.savefig(os.path.join(save_path, 'eps=' + str(eps) + ';min_samples=' + str(min_samples)))
 
     # test ellipse function using one of the arcs, determined by label_num
@@ -55,22 +58,20 @@ if __name__ == '__main__':
     X = (X-x_min)/x_max
 
     Y = Y_coordinates[labels == label_num]
-    y_max = Y.max()
-    y_min = Y.min()
-    Y = (Y-y_min)/y_max
+    Y = (Y-x_min)/x_max
 
     print X, Y
 
     p,cost = ellipse.fit_ellipse(X, Y)
     print ((p, cost))
     xx, yy = ellipse.plot_ellipse(p)
-
+    
     # scale back
     xx = xx * x_max + x_min
     X = X  * x_max + x_min
-    yy = xx * y_max + y_min
-    Y = Y * y_max + y_min
-
+    yy = xx * x_max + x_min
+    Y = Y * x_max + x_min
+    
     plt.scatter(X_coordinates, Y_coordinates, s = 5) # all data points
     plt.scatter(X,Y, c = 'red', s = 5) # data points for fitting
     plt.scatter(xx, yy, c = 'orange', s = 5) # plot fit
