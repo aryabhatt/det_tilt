@@ -11,16 +11,16 @@ from parsing_calib import parse_calib
 
 #print calibrant.calibrant_factory()
 
-
 detector_dist, detect_tilt_alpha, detect_tilt_delta, wavelength, bcenter_x, bcenter_y = parse_calib('LaB6//3.calib')
 pixelSize = 79
 shape = (2048, 2048)
+
 #
 Rot = (np.pi * 2 - detect_tilt_alpha) / (2 * np.pi) * 360  # detector rotation
 tilt = detect_tilt_delta / (2 * np.pi) * 360  # detector tilt  # wavelength
 d = detector_dist * pixelSize * 0.001  # measured in milimeters
 
-ai = pyFAI.AzimuthalIntegrator(wavelength=0.97621599151e-10)
+ai = pyFAI.AzimuthalIntegrator(wavelength= wavelength * 1e-10)
 ai.setFit2D(d, bcenter_x, bcenter_y, tilt, Rot, pixelSize, pixelSize)
 
 c = calibrant.ALL_CALIBRANTS['LaB6']
