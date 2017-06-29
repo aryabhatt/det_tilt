@@ -41,15 +41,33 @@ labels = db.labels_
 # plt.scatter(X_coordinates[mask], Y_coordinates[mask], c=labels[mask], cmap='Paired', s=5)
 # plt.savefig(os.path.join(save_path, 'eps=' + str(eps) + ';min_samples=' + str(min_samples)))
 
-# test ellipse function
+# test ellipse function using one of the arcs, determined by label_num
 label_num = 14
-p,cost = ellipse.fit_ellipse(X_coordinates[labels == label_num], Y_coordinates[labels == label_num])
-print ((p, cost))
-r,s = ellipse.plot_ellipse(p)
+X = X_coordinates[labels == label_num]
+x_max = X.max()
+x_min = X.min()
+X = (X-x_min)/x_max
 
-plt.scatter(X_coordinates, Y_coordinates)
-plt.scatter(X_coordinates[labels == label_num], Y_coordinates[labels == label_num], c = 'red')
-plt.scatter(r, s)
+Y = Y_coordinates[labels == label_num]
+y_max = Y.max()
+y_min = Y.min()
+Y = (Y-y_min)/y_max
+
+print X, Y
+
+p,cost = ellipse.fit_ellipse(X, Y)
+print ((p, cost))
+xx, yy = ellipse.plot_ellipse(p)
+
+# scale back
+xx = xx * x_max + x_min
+X = X  * x_max + x_min
+yy = xx * y_max + y_min
+Y = Y * y_max + y_min
+
+plt.scatter(X_coordinates, Y_coordinates) # all data points
+plt.scatter(X,Y, c = 'red') # data points for fitting
+plt.scatter(xx, yy, c = 'orange') # plot fit
 plt.xlim(0, dim_x)
 plt.ylim(0,dim_y)
 plt.show()

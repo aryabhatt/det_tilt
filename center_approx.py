@@ -76,6 +76,8 @@ if __name__ == '__main__':
         shift = ell.min(axis=0)
         scale = ell.max()
         pp = (ell - shift)/scale
+        print pp.shape
+        print pp
         if len(pp)>3:
             p,_ = ellipse.fit_ellipse(pp[:,0], pp[:,1])
             xx, yy = ellipse.plot_ellipse(p)
