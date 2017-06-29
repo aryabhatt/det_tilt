@@ -14,7 +14,9 @@ import ellipse
 import os.path
 
 
-def clustering(img_path, eps, min_samples):
+img_path='LaB6//3.tif'
+
+def clustering(img_path, n_clusters):
     img, im_simple, im_adaptive, im_combine = import_image(img_path)
     data = img
     data[im_combine == 0] = 0
@@ -36,21 +38,23 @@ def clustering(img_path, eps, min_samples):
 
     # for eps in range(6, 12):
     #     for min_samples in range(5, 11):
-    db = DBSCAN(eps=eps, min_samples=min_samples, metric='euclidean', algorithm='brute')
-    db.fit(input)
-    labels = db.labels_
-    return labels, X_coordinates, Y_coordinates, dim_x, dim_y
+    labels = hierarchy.fclusterdata(input, n_clusters, criterion='maxclust',method='single', metric='euclidean')
+
+    # print input.shape
+    # print labels.shape
+    print np.unique(labels, return_counts= True)
+    return labels, X_coordinates, Y_coordinates
 
 if __name__ == '__main__':
-    eps = 8
-    min_samples = 5
-    labels, X_coordinates, Y_coordinates, dim_x, dim_y = clustering(img_path = 'LaB6_MARCCD.tif', eps = eps, min_samples = min_samples)
-    print labels
-    mask = labels != -1
-    save_path = 'plots//db_test'
-    plt.scatter(X_coordinates[mask], Y_coordinates[mask], c=labels[mask], cmap='Paired', s=5)
-    plt.show()
-    plt.savefig(os.path.join(save_path, 'eps=' + str(eps) + ';min_samples=' + str(min_samples)))
+    labels, X_coordinates, Y_coordinates = clustering(img_path, n_clusters=8)
+    label_num = 7
+    mask = (labels ==label_num)
+    save_path = 'plots'
+
+    plt.scatter(X_coordinates, Y_coordinates, c = labels, cmap='nipy_spectral', s = 5)
+    #plt.scatter(X_coordinates[mask], Y_coordinates[mask],c = 'k', s=15)
+    #plt.show()
+    plt.savefig(os.path.join(save_path, 'clustering'))
 
     # # test ellipse function using one of the arcs, determined by label_num
     # label_num = 14
