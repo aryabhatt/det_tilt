@@ -41,7 +41,7 @@ def clustering(img_path):
     return labels, X_coordinates, Y_coordinates, dim_x, dim_y
 
 if __name__ == '__main__':
-    labels, X_coordinates, Y_coordinates, dim_x, dim_y = clustering('LaB6_MARCCD.tif')
+    labels, X_coordinates, Y_coordinates, dim_x, dim_y = clustering('LaB6\\1.tif')
     # print labels
     # mask = labels != -1
     # plt.scatter(X_coordinates[mask], Y_coordinates[mask], c=labels[mask], cmap='Paired', s=5)
