@@ -10,6 +10,7 @@ from import_image import import_image
 import matplotlib.pyplot as plt
 import ellipse
 import os.path
+
 img, im_simple, im_adaptive, im_combine = import_image('LaB6_MARCCD.tif')
 data = img
 data[im_combine == 0] = 0
@@ -30,7 +31,6 @@ input = input.T
 save_path = 'plots//db_test'
 # for eps in range(6, 12):
 #     for min_samples in range(5, 11):
-
 eps = 8
 min_samples = 5
 db = DBSCAN(eps=eps, min_samples=min_samples, metric='euclidean', algorithm='brute')
