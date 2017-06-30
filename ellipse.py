@@ -41,8 +41,13 @@ def ellipse(p, x, y):
     ell = p[:2].reshape((2,1)) + np.dot(R, p[2:4].reshape((2,1)) * csphi)
     return np.ravel(data - ell) 
     
-def fit_circle(x, y):
-    p0 = np.ones(3)
+def fit_circle(x, y, p0 = None):
+    if p0 is None:
+        p0 = np.zeros(3)
+        p0[0] = x.mean()
+        p0[1] = y.mean()
+        p0[2] = np.sqrt((x - p0[0])**2 + (y-p0[1])**2).mean()
+
     ff = least_squares(circle, p0, args=(x, y))
     return ff.x, ff.cost
 
@@ -62,6 +67,27 @@ def plot_ellipse(p, min_phi = 0., max_phi = 6.242):
     R = rotMatrix(p[4])
     pts = p[:2].reshape((2,1)) + np.dot(R,  pts)
     return pts[0,:], pts[1,:] 
+
+def plot_circle(p, min_phi = 0., max_phi = 6.242):
+    phi = np.linspace(min_phi, max_phi, 100)
+    csphi = np.vstack((np.cos(phi), np.sin(phi)))
+    pts = p[2] * csphi + p[:2].reshape((2,1))
+    return pts[0,:], pts[1,:]
+
+def circle3pt(x, y):
+    if not x.size == 3 or not y.size == 3:
+        raise ValueError
+
+    '''
+    x^2 + y^2 + a x + b y + c = 0
+    a x + c y + c = -(x^2 + y^2)
+    [ X   Y  1 ] {A} =   B
+    '''
+    fx = lambda x, y: -(x**2 + y**2)
+    X = [[ x[0], y[0], 1], [x[1], y[1], 1], [x[2], y[2], 1]]
+    B = [ -fx(x[0], y[0]), -fx(x[1], y[1]), -fx(x[2], y[2]) ] 
+    A = np.linalg.linsolve(X, B)
+    return  A[0]/2., A[1]/2., np.sqrt(A[2])
 
 if __name__ == '__main__':
     np.random.seed(100)
