@@ -57,30 +57,16 @@ if __name__ == '__main__':
     plt.savefig(os.path.join(save_path, 'clustering'))
 
     # # test ellipse function using one of the arcs, determined by label_num
-    # label_num = 14
-    # X = X_coordinates[labels == label_num]
-    # x_max = X.max()
-    # x_min = X.min()
-    # X = (X-x_min)/x_max
-    #
-    # Y = Y_coordinates[labels == label_num]
-    # Y = (Y-x_min)/x_max
-    #
-    # print X, Y
-    #
-    # p,cost = ellipse.fit_ellipse(X, Y)
-    # print ((p, cost))
-    # xx, yy = ellipse.plot_ellipse(p)
-    #
-    # # scale back
-    # xx = xx * x_max + x_min
-    # X = X  * x_max + x_min
-    # yy = xx * x_max + x_min
-    # Y = Y * x_max + x_min
-    #
-    # plt.scatter(X_coordinates, Y_coordinates, s = 5) # all data points
-    # plt.scatter(X,Y, c = 'red', s = 5) # data points for fitting
-    # plt.scatter(xx, yy, c = 'orange', s = 5) # plot fit
-    # plt.xlim(0, dim_x)
-    # plt.ylim(0,dim_y)
-    # plt.show()
+    label_num = 1
+    X = X_coordinates[labels == label_num]
+    Y = Y_coordinates[labels == label_num]
+    
+    p,cost = ellipse.fit_ellipse(X, Y)
+    print ((p, cost))
+    xx, yy = ellipse.plot_ellipse(p)
+    
+    plt.scatter(X_coordinates, Y_coordinates, s = 5) # all data points
+    plt.scatter(X,Y, c = 'red', s = 10) # data points for fitting
+    plt.plot(xx, yy) # plot fit
+    plt.axis('equal')
+    plt.show()
