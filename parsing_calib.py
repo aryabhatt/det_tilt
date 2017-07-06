@@ -19,4 +19,4 @@ def parse_calib(filename):
     detect_tilt_alpha = float(data[9][0][18:])
     detect_tilt_delta = float(data[10][0][18:])
     wavelength = float(data[11][0][11:])
-    return detector_dist, detect_tilt_alpha, detect_tilt_delta, wavelength, bcenter_x, bcenter_y
+    return detector_dist, detect_tilt_alpha, detect_tilt_delta, bcenter_x, bcenter_y, wavelength

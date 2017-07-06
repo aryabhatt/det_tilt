@@ -8,13 +8,11 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import DBSCAN
 from scipy.cluster import hierarchy
 from sklearn.metrics.pairwise import pairwise_distances
-from import_image import import_image
+from scripts.import_image import import_image
 import matplotlib.pyplot as plt
 import ellipse
 import os.path
 
-
-img_path='LaB6//3.tif'
 
 def clustering(img_path, n_clusters):
     img, im_simple, im_adaptive, im_combine = import_image(img_path)
@@ -46,7 +44,8 @@ def clustering(img_path, n_clusters):
     return labels, X_coordinates, Y_coordinates
 
 if __name__ == '__main__':
-    labels, X_coordinates, Y_coordinates = clustering(img_path, n_clusters=8)
+    img_path = 'LaB6_MARCCD.tif'
+    labels, X_coordinates, Y_coordinates = clustering(img_path, n_clusters=16)
     label_num = 7
     mask = (labels ==label_num)
     save_path = 'plots'
