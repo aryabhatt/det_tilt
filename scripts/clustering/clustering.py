@@ -2,14 +2,15 @@
 author: fangren
 """
 
-import os.path
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.cluster import hierarchy
-from scripts import ellipse
-from scripts.importData.import_image import import_image
+
+from scripts.fitting import ellipse
 from scripts.importData.image_filter import image_filter
+from scripts.importData.import_image import import_image
+
 
 def clustering(data, n_clusters):
     # decrease size of image for testing
@@ -51,9 +52,11 @@ if __name__ == '__main__':
     #plt.savefig(os.path.join(save_path, 'clustering'))
 
     # # test ellipse function using one of the arcs, determined by label_num
-    # for label_num in range(16):
-    plt.scatter(X_coordinates, Y_coordinates, s=5)  # all data points
-    for label_num in [1,9,11,12,13]:
+
+
+    for label_num in range(16):
+        plt.scatter(X_coordinates, Y_coordinates, s=5)  # all data points
+    #for label_num in [1,9,11,12,13]:
         try:
             X = X_coordinates[labels == label_num]
             Y = Y_coordinates[labels == label_num]
@@ -65,8 +68,11 @@ if __name__ == '__main__':
             plt.plot(xx, yy) # plot fit
             plt.axis('equal')
             #plt.show()
-            #plt.savefig('..//..//results//fitting//' + str(label_num))
-            plt.savefig('..//..//results//fitting//all' )
-            #plt.close('all')
+            plt.savefig('..//..//results//fitting//MARCCD//' + str(label_num))
+            #plt.savefig('..//..//results//fitting//all' )
+            plt.close('all')
         except ValueError:
+            plt.scatter(X, Y, c='red', s=10)  # data points for fitting
+            plt.savefig('..//..//results//fitting//MARCCD//' + str(label_num))
+            plt.close('all')
             continue

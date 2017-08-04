@@ -8,7 +8,7 @@ from pyFAI import calibrant
 
 from scripts.importData.circular_mask import circular_mask
 from scripts.importData.import_image import import_image
-from scripts.parsing_calib import parse_calib
+from scripts.importData.parsing_calib import parse_calib
 
 
 #print calibrant.calibrant_factory()

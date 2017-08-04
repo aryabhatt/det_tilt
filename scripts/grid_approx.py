@@ -10,7 +10,7 @@ from skimage import io
 from sklearn.cluster import DBSCAN
 from sklearn.neighbors import kneighbors_graph
 
-import ellipse
+from scripts.fitting import ellipse
 
 
 def distance(pt, arr):

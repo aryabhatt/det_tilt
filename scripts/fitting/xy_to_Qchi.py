@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from scripts.importData.import_image import import_image
-from scripts.parsing_calib import parse_calib
+from scripts.importData.parsing_calib import parse_calib
 
 
 def transRev(xdet, ydet, x0, y0):

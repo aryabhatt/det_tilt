@@ -6,7 +6,7 @@ import numpy as np
 from scipy.spatial import cKDTree
 from skimage.feature import blob_log
 
-import ellipse
+from scripts.fitting import ellipse
 
 
 def clusterPts(pts, radius=25, num_clusters=5):
