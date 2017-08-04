@@ -4,7 +4,7 @@ author: fangren
 
 import cv2
 import matplotlib.pyplot as plt
-from clustering import clustering
+from scripts.clustering.clustering import clustering
 
 from scripts.fitting import ellipse
 from scripts.importData.image_filter import image_filter
