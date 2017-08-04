@@ -1,13 +1,15 @@
 """
 author: ronpandolfi, fangren
 """
-import pyFAI
-from pyFAI import calibrant
 import matplotlib.pyplot as plt
 import numpy as np
-from circular_mask import circular_mask
-from import_image import import_image
-from parsing_calib import parse_calib
+import pyFAI
+from pyFAI import calibrant
+
+from scripts.importData.circular_mask import circular_mask
+from scripts.importData.import_image import import_image
+from scripts.parsing_calib import parse_calib
+
 
 #print calibrant.calibrant_factory()
 

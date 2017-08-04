@@ -11,8 +11,8 @@ Qsum function modified by Ronald Pandolf
 import matplotlib.pyplot as plt
 import numpy as np
 
-from parsing_calib import parse_calib
-from scripts.import_image import import_image
+from scripts.importData.import_image import import_image
+from scripts.parsing_calib import parse_calib
 
 
 def transRev(xdet, ydet, x0, y0):

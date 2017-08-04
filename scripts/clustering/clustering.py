@@ -2,24 +2,17 @@
 author: fangren
 """
 
-import cv2
-import numpy as np
-from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import DBSCAN
-from scipy.cluster import hierarchy
-from sklearn.metrics.pairwise import pairwise_distances
-from scripts.import_image import import_image
-import matplotlib.pyplot as plt
-import ellipse
 import os.path
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.cluster import hierarchy
+from scripts import ellipse
+from scripts.importData.import_image import import_image
+from scripts.importData.image_filter import image_filter
 
-
-def clustering(img_path, n_clusters):
-    img, im_simple, im_adaptive, im_combine = import_image(img_path)
-    data = img
-    data[im_combine == 0] = 0
+def clustering(data, n_clusters):
     # decrease size of image for testing
-    data = cv2.resize(data, None, fx=0.1, fy=0.1)
     data = data.astype(float)
     print data.shape
     dim_x = data.shape[0]
@@ -44,28 +37,36 @@ def clustering(img_path, n_clusters):
     return labels, X_coordinates, Y_coordinates
 
 if __name__ == '__main__':
-    img_path = 'LaB6_MARCCD.tif'
-    labels, X_coordinates, Y_coordinates = clustering(img_path, n_clusters=16)
+    img = import_image()
+    img_edge, im_simple, im_adaptive, im_combine = image_filter(img)
+    im_combine = cv2.resize(im_combine, None, fx=0.1, fy=0.1)
+    labels, X_coordinates, Y_coordinates = clustering(im_combine, n_clusters=16)
     label_num = 7
     mask = (labels ==label_num)
     save_path = 'plots'
 
-    plt.scatter(X_coordinates, Y_coordinates, c = labels, cmap='nipy_spectral', s = 5)
+    #plt.scatter(X_coordinates, Y_coordinates, c = labels, cmap='nipy_spectral', s = 5)
     #plt.scatter(X_coordinates[mask], Y_coordinates[mask],c = 'k', s=15)
     #plt.show()
-    plt.savefig(os.path.join(save_path, 'clustering'))
+    #plt.savefig(os.path.join(save_path, 'clustering'))
 
     # # test ellipse function using one of the arcs, determined by label_num
-    label_num = 1
-    X = X_coordinates[labels == label_num]
-    Y = Y_coordinates[labels == label_num]
-    
-    p,cost = ellipse.fit_ellipse(X, Y)
-    print ((p, cost))
-    xx, yy = ellipse.plot_ellipse(p)
-    
-    plt.scatter(X_coordinates, Y_coordinates, s = 5) # all data points
-    plt.scatter(X,Y, c = 'red', s = 10) # data points for fitting
-    plt.plot(xx, yy) # plot fit
-    plt.axis('equal')
-    plt.show()
+    # for label_num in range(16):
+    plt.scatter(X_coordinates, Y_coordinates, s=5)  # all data points
+    for label_num in [1,9,11,12,13]:
+        try:
+            X = X_coordinates[labels == label_num]
+            Y = Y_coordinates[labels == label_num]
+
+            p,cost = ellipse.fit_ellipse(X, Y)
+            print ((p, cost))
+            xx, yy = ellipse.plot_ellipse(p)
+            plt.scatter(X,Y, c = 'red', s = 10) # data points for fitting
+            plt.plot(xx, yy) # plot fit
+            plt.axis('equal')
+            #plt.show()
+            #plt.savefig('..//..//results//fitting//' + str(label_num))
+            plt.savefig('..//..//results//fitting//all' )
+            #plt.close('all')
+        except ValueError:
+            continue

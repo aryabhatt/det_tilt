@@ -3,9 +3,10 @@ author: fangren
 """
 
 from scipy.optimize import least_squares
+
 from scripts.clustering.clustering import clustering
-from scripts.create_fake_image import create_fake_image
-from scripts.xy_to_Qchi import *
+from scripts.importData.create_fake_image import create_fake_image
+from scripts.unused.xy_to_Qchi import *
 
 if __name__ == '__main__':
     # clustering

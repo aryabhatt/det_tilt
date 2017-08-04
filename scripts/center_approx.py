@@ -1,15 +1,12 @@
 #! /usr/local/bin/python
 
-import numpy as np
-from skimage import io
-from skimage import feature
-from skimage.feature import blob_log
-from scipy.spatial import cKDTree
-import ellipse
 import fabio
-
-import sys
 import matplotlib.pyplot as plt
+import numpy as np
+from scipy.spatial import cKDTree
+from skimage.feature import blob_log
+
+import ellipse
 
 
 def clusterPts(pts, radius=25, num_clusters=5):
@@ -79,7 +76,7 @@ if __name__ == '__main__':
         print pp.shape
         print pp
         if len(pp)>3:
-            p,_ = ellipse.fit_ellipse(pp[:,0], pp[:,1])
+            p,_ = ellipse.fit_ellipse(pp[:, 0], pp[:, 1])
             xx, yy = ellipse.plot_ellipse(p)
             xx = xx * scale + shift[0]
             yy = yy * scale + shift[1]

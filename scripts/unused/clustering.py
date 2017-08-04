@@ -1,20 +1,13 @@
 #! /usr/local/bin/python
 
 import time
+
+import matplotlib.pyplot as plt
 import numpy as np
-from skimage import io
 from skimage import feature
-from scipy.spatial import cKDTree
-from scipy.optimize import least_squares
-from numpy.linalg import norm
+from skimage import io
 from sklearn.cluster import AgglomerativeClustering
 from sklearn.neighbors import kneighbors_graph
-from sklearn.cluster import SpectralClustering
-from sklearn.cluster import DBSCAN
-
-import sys
-import matplotlib.pyplot as plt
-import ellipse
 
 if __name__ == '__main__':
 

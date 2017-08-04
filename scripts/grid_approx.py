@@ -1,27 +1,23 @@
 #! /usr/local/bin/python
 
 import time
+
 import numpy as np
-from skimage import io
-from skimage import feature
-
-from scipy.spatial import cKDTree
-from scipy.optimize import least_squares
 from numpy.linalg import norm
-from sklearn.cluster import AgglomerativeClustering
-from sklearn.neighbors import kneighbors_graph
-from sklearn.cluster import SpectralClustering
+from scipy.optimize import least_squares
+from skimage import feature
+from skimage import io
 from sklearn.cluster import DBSCAN
+from sklearn.neighbors import kneighbors_graph
 
-import sys
-import matplotlib.pyplot as plt
 import ellipse
+
 
 def distance(pt, arr):
     return norm(pt-arr,axis=1)
 
 def fit_ellipse(p, pts):
-    output = least_squares(ellipse.ellipse, p, args=(pts[0,:], pts[1,:]))
+    output = least_squares(ellipse.ellipse, p, args=(pts[0, :], pts[1, :]))
     return output.x
 
 

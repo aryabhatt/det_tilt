@@ -2,16 +2,14 @@
 author: fangren
 """
 
-import cv2
-import numpy as np
-from sklearn.preprocessing import StandardScaler
-from sklearn.cluster import DBSCAN
-from scipy.cluster import hierarchy
-from sklearn.metrics.pairwise import pairwise_distances
-from import_image import import_image
-import matplotlib.pyplot as plt
-import ellipse
 import os.path
+
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.cluster import DBSCAN
+
+from scripts.importData.import_image import import_image
 
 
 def clustering(img_path, eps, min_samples):
