@@ -1,0 +1,28 @@
+type:PWDR
+wavelength:0.97
+calibrant:LaB6  SRM660a
+distance:259.610699591
+center:[112.39274497460829, 213.78868890268333]
+tilt:0.0185034090884
+rotation:195.849708602
+azmthOff:0.0
+fullIntegrate:False
+LRazimuth:[200, 340]
+IOtth:[0.1823782075511627, 5.473424913647355]
+outChannels:2500
+outAzimuths:1
+invert_x:False
+invert_y:True
+DetDepth:0.0
+calibskip:0
+pixLimit:20
+cutoff:10
+calibdmin:1.0
+chisq:2.29557246197
+Flat Bkg:0.0
+binType:q
+SampleShape:Cylinder
+PolaVal:[0.99, False]
+SampleAbs:[0.0, False]
+dark image:['', -1.0]
+background image:['', -1.0]

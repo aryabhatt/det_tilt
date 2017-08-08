@@ -1,0 +1,13 @@
+imagetype=uncorrected-q
+dtype=int32
+horsize=1475
+versize=195
+region_ulc_x=0.0
+region_ulc_y=0.0
+bcenter_x=-124.897876249
+bcenter_y=93.3502812295
+detect_dist=1662.45604387
+detect_tilt_alpha=6.28155842507
+detect_tilt_delta=-0.568571972397
+wavelenght=0.6199
+Qconv_const=0.0060968858063

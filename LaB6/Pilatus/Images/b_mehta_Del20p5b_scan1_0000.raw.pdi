@@ -1,0 +1,30 @@
+# Relavant Info for Pilatus Scans
+
+# Diffractometer Motor Positions for image
+# Eta = 2; Delta = 20.5; Chi = 90 ; Phi = -90 ; Nu = 2.05711 ; Mu = 0
+# Calculated Detector Calibration Parameters for image:
+# PD_X = 0.0001; PD_Y = 0; PD_DIST = 0 ; PD_ALPHA = 0 ; PD_DELTA = -0.359512 ; LAMBDA = 0.885601
+# Initial Calibration Parameters:
+PD_X_CALIB = ; PD_Y_CALIB = ; PD_DIST_CALIB =  ; PD_ALPHA_CALIB =  ; PD_DELTA_CALIB =  ; LAMBDA_CALIB = 
+# Diffractometer Motor Positions for Initial Calibration:
+PD_TTH_CALIB =  ; PD_GAM_CALIB =  ; PD_CHI_CALIB = 
+# Direct Beam Pixel at TTH/DEL = 0 and GAM/NU = 0:
+PD_X_0 =  ; PD_Y_0 =  
+
+# Regions of interest
+ROI_1_X1=0; ROI_1_Y1=0; ROI_1_X2=1474; ROI_1_Y2=194;
+ROI_2_X1=1241; ROI_2_Y1=91; ROI_2_X2=1241; ROI_2_Y2=91;
+ROI_3_X1=1236; ROI_3_Y1=86; ROI_3_X2=1246; ROI_3_Y2=96;
+ROI_4_X1=1231; ROI_4_Y1=81; ROI_4_X2=1251; ROI_4_Y2=101;
+ROI_5_X1=1136; ROI_5_Y1=86; ROI_5_X2=1146; ROI_5_Y2=96;
+ROI_6_X1=1131; ROI_6_Y1=81; ROI_6_X2=1151; ROI_6_Y2=101;
+ROI_7_X1=1236; ROI_7_Y1=90; ROI_7_X2=1246; ROI_7_Y2=92;
+ROI_8_X1=1221; ROI_8_Y1=81; ROI_8_X2=1261; ROI_8_Y2=101;
+ROI_9_X1=200; ROI_9_Y1=111; ROI_9_X2=220; ROI_9_Y2=161;
+ROI_10_X1=0; ROI_10_Y1=0; ROI_10_X2=0; ROI_10_Y2=0;
+ROI_11_X1=0; ROI_11_Y1=0; ROI_11_X2=0; ROI_11_Y2=0;
+ROI_12_X1=0; ROI_12_Y1=0; ROI_12_X2=0; ROI_12_Y2=0;
+ROI_13_X1=0; ROI_13_Y1=0; ROI_13_X2=0; ROI_13_Y2=0;
+ROI_14_X1=0; ROI_14_Y1=0; ROI_14_X2=0; ROI_14_Y2=0;
+ROI_15_X1=183; ROI_15_Y1=135; ROI_15_X2=207; ROI_15_Y2=142;
+ROI_16_X1=183; ROI_16_Y1=95; ROI_16_X2=207; ROI_16_Y2=102;

@@ -1,0 +1,11 @@
+# General info
+User: SSRL\b_tassone, time: Thu Jun 09 21:01:15 2016
+
+# Temperature
+25.3C
+
+# Counters
+sec=10, Monitor=835551, bstop=9141, I0=1.42533e+06, I1=0, ch5=6157, ch6=0, ch7=0, TEMP=25.3, ICRxT=1, OCRxT=1, ROI1=1, ROI2=1, ROI3=1, ROI4=1, ROI5=1, ROI6=1, ccd1=0, keith_I=0, keith_V=0, marccd=-1, CTEMP=0, Timer=0
+
+# Motors
+goniy=14.8, samplez=0, phi=-15.2418, th=2.5, detx=18.5, dety=-5, detz=249.997, platz=18.635, m8=0, m9=0, m10=0, m11=0, dethorz=-5.10603, detvert=-31.6, detzold=879.936, m15=0, t1v=2.525, b1v=2.475, l1h=1.925, r1h=2.075, t2v=-0.4075, b2v=0.4575, l2h=0.383125, r2h=-0.233125, gshorz=-2.46162, gsvert=0.0636667, stagey=28.5, stagex=0.9, bsvert=11.29, bshorz=-7.49, samplex=2.2, sampley=-1.4265, bpm=2000, monbend=310, monslit=11.6003, monang=35, m0pitch=4.13286, m0vert=1.31203, m0bend=19.0298, m39=0, tablev1=39.865, tablev2=60.0191, thor=-4.83638e-07, tableya=1.2001, bsv=24.3409, bsh=2.005, stagex1=1.95228, stagey1=3.07772, h1gap=4, h1tran=0.075, v1gap=5, v1tran=0.025, h2gap=0.15, h2tran=-0.3081, v2gap=0.05, v2tran=-0.4325, table=49.9421, tablep=0.01167, kmotV=-300, kmotI=0, cryocon=-1, tempset=25
